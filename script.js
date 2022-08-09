@@ -2,7 +2,7 @@
 const paraColorToGuess = document.querySelector('#rgb-color');
 const colorCirclesOptions = document.querySelector('.guess-color');
 const paraAnswer = document.querySelector('#answer');
-
+const resetButton = document.querySelector('#reset-game');
 
 
 // Criando elementos
@@ -19,6 +19,7 @@ const randColor = () => {
 
 
 const genColorOptions = (numOptions) => {
+
   for (let i = 0; i < numOptions; i += 1) {
     const createList = document.createElement('LI');
     createList.classList.add('ball');
@@ -42,6 +43,23 @@ const playerChoice = (choice) => {
     paraAnswer.innerText = 'Errou! Tente novamente!';
   }
 };
+
+const removeLastColors = () => {
+  const listColorToGuess = document.querySelectorAll('LI');
+  for (let item of listColorToGuess) {
+    item.remove();
+  }
+  paraAnswer.innerText = 'Escolha uma cor';
+};
+
+const resetGuessGame = () => {
+  removeLastColors();
+  genColorOptions(6);
+  genGuessTheColor();
+};
+
+// Eventos
+resetButton.addEventListener('click', resetGuessGame);
 
 window.onload = () => {
   genColorOptions(6);
