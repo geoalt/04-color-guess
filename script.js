@@ -3,6 +3,7 @@ const paraColorToGuess = document.querySelector('#rgb-color');
 const colorCirclesOptions = document.querySelector('.guess-color');
 const paraAnswer = document.querySelector('#answer');
 const resetButton = document.querySelector('#reset-game');
+let playerScore = 0;
 
 
 // Criando elementos
@@ -38,7 +39,10 @@ const genGuessTheColor = () => {
 
 const playerChoice = (choice) => {
   if (choice.target.style.backgroundColor === colorToGuess) {
+    const paraScore = document.querySelector('#score');
     paraAnswer.innerText = 'Acertou!';
+    playerScore += 3;
+    paraScore.innerText = playerScore;
   } else {
     paraAnswer.innerText = 'Errou! Tente novamente!';
   }
